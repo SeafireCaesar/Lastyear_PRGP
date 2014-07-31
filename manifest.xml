@@ -1,0 +1,24 @@
+<package>
+  <description brief="drrobot_i90_player">
+
+     drrobot_i90_player
+
+  </description>
+  <author>hee502</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/drrobot_i90_player</url>
+  <depend package="roscpp"/>
+  <depend package="geometry_msgs"/>
+  <depend package="joy"/>
+  <depend package="nav_msgs"/>
+  <depend package="player"/>
+  <depend package="roslib"/>
+  <depend package="rospy"/>
+  <depend package="sensor_msgs"/>
+  <depend package="tf"/>
+  <depend package="DrRobotMotionSensorDriver"/>
+
+</package>
+
+
