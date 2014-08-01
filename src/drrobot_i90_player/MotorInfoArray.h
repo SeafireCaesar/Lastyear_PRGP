@@ -48,7 +48,7 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <drrobot_I90_player/MotorInfo.h>
+#include "MotorInfo.h"
 
 namespace drrobot_I90_player
 {
