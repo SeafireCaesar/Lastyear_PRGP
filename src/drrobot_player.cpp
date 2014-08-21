@@ -82,21 +82,21 @@ Publishes to (name / type):
 #include <boost/lexical_cast.hpp>
 
 #include <ros/ros.h>
-#include "tf/transform_broadcaster.h"
+#include <tf/transform_broadcaster.h>
 #include <tf/transform_listener.h>
 
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/Twist.h>
 #include <std_msgs/Float64.h>
 
-#include <drrobot_I90_player/MotorInfo.h>
-#include <drrobot_I90_player/MotorInfoArray.h>
-#include <drrobot_I90_player/RangeArray.h>
-#include <drrobot_I90_player/Range.h>
-#include <drrobot_I90_player/PowerInfo.h>
-#include <drrobot_I90_player/StandardSensor.h>
-#include <drrobot_I90_player/CustomSensor.h>
-#include <DrRobotMotionSensorDriver.hpp>
+#include "MotorInfo.h"
+#include "MotorInfoArray.h"
+#include "RangeArray.h"
+#include "Range.h"
+#include "PowerInfo.h"
+#include "StandardSensor.h"
+#include "CustomSensor.h"
+#include "DrRobotMotionSensorDriver.hpp"
 
 #define MOTOR_NUM       6
 #define IR_NUM          10
@@ -159,7 +159,7 @@ public:
           ROS_INFO("I get Enable_IR: false");
 	*/
 
-        enable_sonar_ = true;
+        enable_sonar_ = false;
 /*
         private_nh.getParam("Enable_US", enable_sonar_);
         if (enable_sonar_)
@@ -270,6 +270,8 @@ public:
         int leftWheelCmd = motorDir_ * leftWheel * encoderOneCircleCnt_ / ( 2* 3.1415927);
         int rightWheelCmd = - motorDir_ * rightWheel * encoderOneCircleCnt_ / ( 2* 3.1415927);
         ROS_INFO("Received control command: [%d, %d]", leftWheelCmd,rightWheelCmd);
+				drrobotMotionDriver_->setMotorVelocityCtrlPID(0, 10, 3, 100);
+				drrobotMotionDriver_->setMotorVelocityCtrlPID(1, 10, 3, 100);
         drrobotMotionDriver_->sendMotorCtrlAllCmd(Velocity,leftWheelCmd, rightWheelCmd,NOCONTROL,NOCONTROL, NOCONTROL,NOCONTROL);
       }
  
