@@ -150,7 +150,7 @@ public:
         private_nh.getParam("RobotSerialPort",robotSerialPort_);
         ROS_INFO("I get ROBOT_SerialPort: [%s]", robotSerialPort_.c_str());
 
-        enable_ir_ = true;
+        enable_ir_ = false;
 	/*
         private_nh.getParam("Enable_IR", enable_ir_);
         if (enable_ir_)
@@ -159,7 +159,7 @@ public:
           ROS_INFO("I get Enable_IR: false");
 	*/
 
-        enable_sonar_ = false;
+        enable_sonar_ = true;
 /*
         private_nh.getParam("Enable_US", enable_sonar_);
         if (enable_sonar_)
@@ -270,8 +270,6 @@ public:
         int leftWheelCmd = motorDir_ * leftWheel * encoderOneCircleCnt_ / ( 2* 3.1415927);
         int rightWheelCmd = - motorDir_ * rightWheel * encoderOneCircleCnt_ / ( 2* 3.1415927);
         ROS_INFO("Received control command: [%d, %d]", leftWheelCmd,rightWheelCmd);
-				drrobotMotionDriver_->setMotorVelocityCtrlPID(0, 10, 3, 100);
-				drrobotMotionDriver_->setMotorVelocityCtrlPID(1, 10, 3, 100);
         drrobotMotionDriver_->sendMotorCtrlAllCmd(Velocity,leftWheelCmd, rightWheelCmd,NOCONTROL,NOCONTROL, NOCONTROL,NOCONTROL);
       }
  
